@@ -1,7 +1,7 @@
 var helper = require('./helper');
 
 function findAccountById(accounts, id) {
-    return accounts.find((ids) => ids.id === id);
+    return helper(accounts, id, 'id');
 }
 
 function sortAccountsByLastName(accounts) {
@@ -23,8 +23,9 @@ function getBooksPossessedByAccount(account, books, authors) {
     let result = books.reduce((acc, book, index) => {
         const lent = book.borrows;
         if (lent.some((foo) => foo.id === id && foo.returned === false)) {
+            //had to make copy of book in order to not alter the original data set
             const copy = book;
-            const found = authors.find((author) => author.id === book.authorId);
+            const found = helper(authors, book.authorId, 'id');
             copy.author = found;
             acc.push(copy);
         }

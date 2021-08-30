@@ -1,3 +1,5 @@
+var helper = require('./helper');
+
 function getTotalBooksCount(books) {
     return books.length;
 }
@@ -16,8 +18,8 @@ function getMostCommonGenres(books) {
     const nameCount = genre.reduce((acc, type, i) => {
         if (!acc.some((genre) => genre.name === type) && acc.length < 5) {
             acc[i] = { name: type, count: 1, };
-        } else if (acc.find((key) => key.name === type)) {
-            let found = acc.find((key) => key.name === type);
+        } else if (helper(acc, type, 'name')) {
+            let found = helper(acc, type, 'name');
             found.count++;
         }
         return acc;
@@ -47,6 +49,7 @@ function getMostPopularAuthors(books, authors) {
         });
     });
     const result = popular.sort((varA, varB) => varB.count - varA.count);
+    //cuts the array to 5 entries if the length is over 5
     return result.length > 5 ? result.slice(0, 5) : result;
 
 }
