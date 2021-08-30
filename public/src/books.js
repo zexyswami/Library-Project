@@ -1,4 +1,4 @@
-var helper = require('./helper');
+const helper = require('./helper');
 
 function findAuthorById(authors, id) {
     return helper(authors, id, 'id');

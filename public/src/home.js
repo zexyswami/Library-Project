@@ -1,4 +1,4 @@
-var helper = require('./helper');
+const helper = require('./helper');
 
 function getTotalBooksCount(books) {
     return books.length;

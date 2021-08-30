@@ -1,4 +1,4 @@
-var helper = require('./helper');
+const helper = require('./helper');
 
 function findAccountById(accounts, id) {
     return helper(accounts, id, 'id');
